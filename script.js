@@ -12,32 +12,51 @@ function updateDisplay() {
 
 keys.addEventListener("click", function (e) {
   const element = e.target;
+  const value = element.value;
 
   if (!element.matches("button")) return;
 
-  if (element.classList.contains("operator")) {
-    /*     console.log('operator', element.value); */
-    handleOpeator(element.value);
-    updateDisplay();
-    return;
+  switch (value) {
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+    case '=':
+      handleOpeator(value);
+      break;
+    case '.':
+      inputDecimal();
+    case 'clear':
+      clear();
+      break;
+      default:
+        inputNumber(element.value)
   }
+  updateDisplay()
 
-  if (element.classList.contains("decimal")) {
-    /*   console.log('operator', element.value); */
-    inputDecimal();
+  /*  if (element.classList.contains("operator")) { */
+  /*     console.log('operator', element.value); */
+  /*   handleOpeator(element.value);
     updateDisplay();
     return;
-  }
+  } */
 
-  if (element.classList.contains("clear")) {
-    /* console.log('operator', element.value); */
-    clear();
+  /*  if (element.classList.contains("decimal")) { */
+  /*   console.log('operator', element.value); */
+  /*   inputDecimal();
     updateDisplay();
     return;
-  }
+  } */
+
+  /* if (element.classList.contains("clear")) { */
+  /* console.log('operator', element.value); */
+  /*  clear();
+    updateDisplay();
+    return;
+  } */
   //* console.log('number', element.value);
-  inputNumber(element.value);
-  updateDisplay();
+ /*  inputNumber(element.value);
+  updateDisplay(); */
 });
 
 function handleOpeator(nextOperator) {
@@ -87,11 +106,11 @@ function inputNumber(num) {
 }
 
 function inputDecimal() {
-  if (!displayValue.includes(".")) {
-    displayValue += ".";
+  if (!displayValue.includes('.')) {
+    displayValue += '.';
   }
 }
 
 function clear() {
-  displayValue = "0";
+  displayValue = '0';
 }
