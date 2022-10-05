@@ -18,5 +18,34 @@ keys.addEventListener('click', function(e){
         return
     }
 
-    console.log('number', element.value);
+    if(element.classList.contains('decimal')){
+      /*   console.log('operator', element.value); */
+      inputDecimal()
+      updateDisplay()
+        return
+    }
+
+    if(element.classList.contains('clear')){
+        /* console.log('operator', element.value); */
+        clear()
+        updateDisplay()
+        return
+    }
+   //* console.log('number', element.value);
+   inputNumber(element.value)
+   updateDisplay()
 })
+
+function inputNumber(num){
+    displayValue = displayValue === '0' ? num: displayValue + num
+}
+
+function inputDecimal(){
+    if(!displayValue.includes('.')){
+    displayValue += '.'
+}
+}
+
+function clear (){
+    displayValue = '0'
+}
